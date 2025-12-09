@@ -1,0 +1,331 @@
+{
+  "vv": {
+    "name": "Sourcebot Architecture",
+    "version": "1.0.0",
+    "edgeTypes": {
+      "api": {
+        "label": "REST API",
+        "style": "solid",
+        "color": "#3B82F6"
+      },
+      "grpc": {
+        "label": "gRPC",
+        "style": "solid",
+        "color": "#10B981"
+      },
+      "prisma": {
+        "label": "Prisma Client",
+        "style": "solid",
+        "color": "#F59E0B"
+      },
+      "bullmq": {
+        "label": "BullMQ",
+        "style": "dashed",
+        "color": "#EF4444"
+      },
+      "import": {
+        "label": "Import",
+        "style": "dotted",
+        "color": "#6B7280"
+      },
+      "webhook": {
+        "label": "Webhook",
+        "style": "dashed",
+        "color": "#1F2937"
+      }
+    }
+  },
+  "nodes": [
+    {
+      "id": "web",
+      "type": "text",
+      "x": 625,
+      "y": 70,
+      "width": 150,
+      "height": 60,
+      "text": "Web Frontend",
+      "vv": {
+        "nodeType": "web",
+        "shape": "rectangle",
+        "sources": ["packages/web/**/*"]
+      }
+    },
+    {
+      "id": "backend",
+      "type": "text",
+      "x": 425,
+      "y": 270,
+      "width": 150,
+      "height": 60,
+      "text": "Backend API",
+      "vv": {
+        "nodeType": "backend",
+        "shape": "rectangle",
+        "sources": ["packages/backend/**/*"]
+      }
+    },
+    {
+      "id": "mcp",
+      "type": "text",
+      "x": 725,
+      "y": 270,
+      "width": 150,
+      "height": 60,
+      "text": "MCP Server",
+      "vv": {
+        "nodeType": "mcp",
+        "shape": "rectangle",
+        "sources": ["packages/mcp/**/*"]
+      }
+    },
+    {
+      "id": "database",
+      "type": "text",
+      "x": 25,
+      "y": 470,
+      "width": 150,
+      "height": 60,
+      "text": "PostgreSQL",
+      "vv": {
+        "nodeType": "database",
+        "shape": "cylinder",
+        "sources": ["packages/db/**/*"]
+      }
+    },
+    {
+      "id": "redis",
+      "type": "text",
+      "x": 625,
+      "y": 470,
+      "width": 150,
+      "height": 60,
+      "text": "Redis",
+      "vv": {
+        "nodeType": "redis",
+        "shape": "cylinder",
+        "sources": []
+      }
+    },
+    {
+      "id": "zoekt",
+      "type": "text",
+      "x": 1025,
+      "y": 470,
+      "width": 150,
+      "height": 60,
+      "text": "Zoekt Search",
+      "vv": {
+        "nodeType": "zoekt",
+        "shape": "hexagon",
+        "sources": ["vendor/zoekt/**/*"]
+      }
+    },
+    {
+      "id": "shared",
+      "type": "text",
+      "x": 1225,
+      "y": 470,
+      "width": 150,
+      "height": 60,
+      "text": "Shared Library",
+      "vv": {
+        "nodeType": "shared",
+        "shape": "rectangle",
+        "sources": ["packages/shared/**/*"]
+      }
+    },
+    {
+      "id": "schemas",
+      "type": "text",
+      "x": 825,
+      "y": 470,
+      "width": 150,
+      "height": 60,
+      "text": "Schemas",
+      "vv": {
+        "nodeType": "schemas",
+        "shape": "rectangle",
+        "sources": ["packages/schemas/**/*", "schemas/**/*"]
+      }
+    },
+    {
+      "id": "queryLanguage",
+      "type": "text",
+      "x": 1025,
+      "y": 270,
+      "width": 150,
+      "height": 60,
+      "text": "Query Language",
+      "vv": {
+        "nodeType": "queryLanguage",
+        "shape": "rectangle",
+        "sources": ["packages/queryLanguage/**/*"]
+      }
+    },
+    {
+      "id": "gitHosts",
+      "type": "text",
+      "x": 425,
+      "y": 470,
+      "width": 150,
+      "height": 60,
+      "text": "Git Hosts",
+      "vv": {
+        "nodeType": "gitHosts",
+        "shape": "cloud",
+        "sources": ["packages/backend/src/github.ts", "packages/backend/src/gitlab.ts", "packages/backend/src/gitea.ts", "packages/backend/src/gerrit.ts", "packages/backend/src/bitbucket*.ts", "packages/backend/src/azuredevops.ts"]
+      }
+    },
+    {
+      "id": "enterprise",
+      "type": "text",
+      "x": 225,
+      "y": 470,
+      "width": 150,
+      "height": 60,
+      "text": "Enterprise (EE)",
+      "vv": {
+        "nodeType": "enterprise",
+        "shape": "rectangle",
+        "sources": ["ee/**/*", "packages/backend/src/ee/**/*", "packages/web/src/ee/**/*"]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "web-backend",
+      "fromNode": "web",
+      "toNode": "backend",
+      "label": "REST API",
+      "vv": {
+        "edgeType": "api"
+      }
+    },
+    {
+      "id": "web-database",
+      "fromNode": "web",
+      "toNode": "database",
+      "label": "Server Actions",
+      "vv": {
+        "edgeType": "prisma"
+      }
+    },
+    {
+      "id": "backend-database",
+      "fromNode": "backend",
+      "toNode": "database",
+      "label": "Prisma",
+      "vv": {
+        "edgeType": "prisma"
+      }
+    },
+    {
+      "id": "backend-redis",
+      "fromNode": "backend",
+      "toNode": "redis",
+      "label": "Job Queue",
+      "vv": {
+        "edgeType": "bullmq"
+      }
+    },
+    {
+      "id": "backend-zoekt",
+      "fromNode": "backend",
+      "toNode": "zoekt",
+      "label": "Index & Search",
+      "vv": {
+        "edgeType": "grpc"
+      }
+    },
+    {
+      "id": "mcp-zoekt",
+      "fromNode": "mcp",
+      "toNode": "zoekt",
+      "label": "Search API",
+      "vv": {
+        "edgeType": "api"
+      }
+    },
+    {
+      "id": "backend-gitHosts",
+      "fromNode": "backend",
+      "toNode": "gitHosts",
+      "label": "Sync & Clone",
+      "vv": {
+        "edgeType": "webhook"
+      }
+    },
+    {
+      "id": "web-shared",
+      "fromNode": "web",
+      "toNode": "shared",
+      "label": "Import",
+      "vv": {
+        "edgeType": "import"
+      }
+    },
+    {
+      "id": "backend-shared",
+      "fromNode": "backend",
+      "toNode": "shared",
+      "label": "Import",
+      "vv": {
+        "edgeType": "import"
+      }
+    },
+    {
+      "id": "mcp-shared",
+      "fromNode": "mcp",
+      "toNode": "shared",
+      "label": "Import",
+      "vv": {
+        "edgeType": "import"
+      }
+    },
+    {
+      "id": "web-schemas",
+      "fromNode": "web",
+      "toNode": "schemas",
+      "label": "Types",
+      "vv": {
+        "edgeType": "import"
+      }
+    },
+    {
+      "id": "backend-schemas",
+      "fromNode": "backend",
+      "toNode": "schemas",
+      "label": "Types",
+      "vv": {
+        "edgeType": "import"
+      }
+    },
+    {
+      "id": "web-queryLanguage",
+      "fromNode": "web",
+      "toNode": "queryLanguage",
+      "label": "Parser",
+      "vv": {
+        "edgeType": "import"
+      }
+    },
+    {
+      "id": "backend-enterprise",
+      "fromNode": "backend",
+      "toNode": "enterprise",
+      "label": "EE Features",
+      "vv": {
+        "edgeType": "import"
+      }
+    },
+    {
+      "id": "web-enterprise",
+      "fromNode": "web",
+      "toNode": "enterprise",
+      "label": "EE Features",
+      "vv": {
+        "edgeType": "import"
+      }
+    }
+  ]
+}

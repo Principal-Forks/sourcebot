@@ -1,0 +1,127 @@
+version: "1.0.0"
+name: "Sourcebot Component Library"
+
+nodeComponents:
+  # Frontend
+  web:
+    label: "Web Frontend"
+    description: "Next.js 15 frontend application with React 19"
+    color: "#3B82F6"
+    path: "packages/web"
+    tags: ["frontend", "nextjs", "react"]
+
+  # Backend Services
+  backend:
+    label: "Backend API"
+    description: "Express.js backend service for API and sync operations"
+    color: "#10B981"
+    path: "packages/backend"
+    tags: ["backend", "express", "api"]
+
+  mcp:
+    label: "MCP Server"
+    description: "Model Context Protocol server for Claude integration"
+    color: "#8B5CF6"
+    path: "packages/mcp"
+    tags: ["mcp", "ai", "integration"]
+
+  # Data Layer
+  database:
+    label: "PostgreSQL"
+    description: "Primary database for configuration and metadata"
+    color: "#F59E0B"
+    path: "packages/db"
+    tags: ["database", "prisma", "postgresql"]
+
+  redis:
+    label: "Redis"
+    description: "Cache and job queue storage"
+    color: "#EF4444"
+    tags: ["cache", "queue", "redis"]
+
+  zoekt:
+    label: "Zoekt Search"
+    description: "Go-based code search and indexing engine"
+    color: "#06B6D4"
+    path: "vendor/zoekt"
+    tags: ["search", "indexing", "go"]
+
+  # Shared Libraries
+  shared:
+    label: "Shared Library"
+    description: "Common utilities, types, and configurations"
+    color: "#6B7280"
+    path: "packages/shared"
+    tags: ["shared", "utilities", "types"]
+
+  schemas:
+    label: "Schemas"
+    description: "JSON schemas and TypeScript type generation"
+    color: "#A855F7"
+    path: "packages/schemas"
+    tags: ["schemas", "types", "validation"]
+
+  queryLanguage:
+    label: "Query Language"
+    description: "Custom query language parser using Lezer"
+    color: "#EC4899"
+    path: "packages/queryLanguage"
+    tags: ["parser", "query", "lezer"]
+
+  # External Integrations
+  gitHosts:
+    label: "Git Hosts"
+    description: "GitHub, GitLab, Gitea, Bitbucket, Azure DevOps integrations"
+    color: "#1F2937"
+    tags: ["integrations", "git", "vcs"]
+
+  # Enterprise
+  enterprise:
+    label: "Enterprise (EE)"
+    description: "Enterprise features: permissions, billing, audit"
+    color: "#FBBF24"
+    path: "ee"
+    tags: ["enterprise", "ee", "premium"]
+
+edgeComponents:
+  api:
+    label: "REST API"
+    description: "HTTP REST API communication"
+    style: "solid"
+    color: "#3B82F6"
+
+  grpc:
+    label: "gRPC"
+    description: "gRPC protocol for search operations"
+    style: "solid"
+    color: "#10B981"
+
+  prisma:
+    label: "Prisma Client"
+    description: "Database queries via Prisma ORM"
+    style: "solid"
+    color: "#F59E0B"
+
+  bullmq:
+    label: "BullMQ"
+    description: "Job queue for background processing"
+    style: "dashed"
+    color: "#EF4444"
+
+  import:
+    label: "Import"
+    description: "Package/module import dependency"
+    style: "dotted"
+    color: "#6B7280"
+
+  stdio:
+    label: "Stdio"
+    description: "Standard input/output communication"
+    style: "solid"
+    color: "#8B5CF6"
+
+  webhook:
+    label: "Webhook"
+    description: "HTTP webhook callbacks"
+    style: "dashed"
+    color: "#1F2937"
