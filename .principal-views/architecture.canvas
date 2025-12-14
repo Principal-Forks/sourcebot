@@ -1,0 +1,224 @@
+{
+  "pv": {
+    "name": "Sourcebot Architecture",
+    "version": "1.0.0"
+  },
+  "nodes": [
+    {
+      "id": "frontend",
+      "type": "text",
+      "x": 125,
+      "y": 60,
+      "width": 150,
+      "height": 80,
+      "pv": {
+        "nodeType": "Frontend"
+      }
+    },
+    {
+      "id": "backend",
+      "type": "text",
+      "x": 475,
+      "y": 260,
+      "width": 150,
+      "height": 80,
+      "pv": {
+        "nodeType": "Backend"
+      }
+    },
+    {
+      "id": "database",
+      "type": "text",
+      "x": 225,
+      "y": 460,
+      "width": 150,
+      "height": 80,
+      "pv": {
+        "nodeType": "Database"
+      }
+    },
+    {
+      "id": "redis",
+      "type": "text",
+      "x": 825,
+      "y": 460,
+      "width": 150,
+      "height": 80,
+      "pv": {
+        "nodeType": "Redis"
+      }
+    },
+    {
+      "id": "codeindex",
+      "type": "text",
+      "x": 625,
+      "y": 460,
+      "width": 150,
+      "height": 80,
+      "pv": {
+        "nodeType": "CodeIndex"
+      }
+    },
+    {
+      "id": "auth",
+      "type": "text",
+      "x": 25,
+      "y": 460,
+      "width": 150,
+      "height": 80,
+      "pv": {
+        "nodeType": "AuthProvider"
+      }
+    },
+    {
+      "id": "github",
+      "type": "text",
+      "x": 740,
+      "y": 70,
+      "width": 120,
+      "height": 60,
+      "pv": {
+        "nodeType": "GitHub"
+      }
+    },
+    {
+      "id": "gitlab",
+      "type": "text",
+      "x": 540,
+      "y": 70,
+      "width": 120,
+      "height": 60,
+      "pv": {
+        "nodeType": "GitLab"
+      }
+    },
+    {
+      "id": "bitbucket",
+      "type": "text",
+      "x": 340,
+      "y": 70,
+      "width": 120,
+      "height": 60,
+      "pv": {
+        "nodeType": "Bitbucket"
+      }
+    },
+    {
+      "id": "llm",
+      "type": "text",
+      "x": 425,
+      "y": 460,
+      "width": 150,
+      "height": 80,
+      "pv": {
+        "nodeType": "LanguageModel"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "frontend-backend",
+      "fromNode": "frontend",
+      "toNode": "backend",
+      "pv": {
+        "edgeType": "HTTP"
+      }
+    },
+    {
+      "id": "backend-database",
+      "fromNode": "backend",
+      "toNode": "database",
+      "pv": {
+        "edgeType": "Query"
+      }
+    },
+    {
+      "id": "backend-redis",
+      "fromNode": "backend",
+      "toNode": "redis",
+      "pv": {
+        "edgeType": "Cache"
+      }
+    },
+    {
+      "id": "backend-codeindex",
+      "fromNode": "backend",
+      "toNode": "codeindex",
+      "pv": {
+        "edgeType": "Index"
+      }
+    },
+    {
+      "id": "frontend-auth",
+      "fromNode": "frontend",
+      "toNode": "auth",
+      "pv": {
+        "edgeType": "Auth"
+      }
+    },
+    {
+      "id": "backend-auth",
+      "fromNode": "backend",
+      "toNode": "auth",
+      "pv": {
+        "edgeType": "Auth"
+      }
+    },
+    {
+      "id": "backend-github",
+      "fromNode": "backend",
+      "toNode": "github",
+      "pv": {
+        "edgeType": "API"
+      }
+    },
+    {
+      "id": "backend-gitlab",
+      "fromNode": "backend",
+      "toNode": "gitlab",
+      "pv": {
+        "edgeType": "API"
+      }
+    },
+    {
+      "id": "backend-bitbucket",
+      "fromNode": "backend",
+      "toNode": "bitbucket",
+      "pv": {
+        "edgeType": "API"
+      }
+    },
+    {
+      "id": "backend-llm",
+      "fromNode": "backend",
+      "toNode": "llm",
+      "pv": {
+        "edgeType": "API"
+      }
+    },
+    {
+      "id": "github-webhook",
+      "fromNode": "github",
+      "toNode": "backend",
+      "pv": {
+        "edgeType": "Webhook"
+      }
+    },
+    {
+      "id": "gitlab-webhook",
+      "fromNode": "gitlab",
+      "toNode": "backend",
+      "pv": {
+        "edgeType": "Webhook"
+      }
+    },
+    {
+      "id": "bitbucket-webhook",
+      "fromNode": "bitbucket",
+      "toNode": "backend",
+      "pv": {
+        "edgeType": "Webhook"
+      }
+    }
+  ]
+}

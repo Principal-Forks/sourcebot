@@ -1,0 +1,91 @@
+version: "1.0.0"
+name: "Sourcebot Architecture Library"
+
+nodeComponents:
+  Frontend:
+    description: "Next.js web application providing user interface"
+    shape: "rectangle"
+    icon: "🌐"
+    color: "#3b82f6"
+  Backend:
+    description: "Node.js API server handling core business logic"
+    shape: "rectangle"
+    icon: "⚙️"
+    color: "#10b981"
+  Database:
+    description: "PostgreSQL database for persistent storage"
+    shape: "cylinder"
+    icon: "🗄️"
+    color: "#8b5cf6"
+  GitHub:
+    description: "GitHub API integration"
+    shape: "cloud"
+    icon: "🐙"
+    color: "#6b7280"
+  GitLab:
+    description: "GitLab API integration"
+    shape: "cloud"
+    icon: "🦊"
+    color: "#f59e0b"
+  Bitbucket:
+    description: "Bitbucket API integration"
+    shape: "cloud"
+    icon: "🔧"
+    color: "#06b6d4"
+  LanguageModel:
+    description: "LLM provider for AI features"
+    shape: "diamond"
+    icon: "🤖"
+    color: "#ef4444"
+  CodeIndex:
+    description: "Search index for code repositories"
+    shape: "database"
+    icon: "🔍"
+    color: "#84cc16"
+  AuthProvider:
+    description: "Authentication and authorization service"
+    shape: "shield"
+    icon: "🔐"
+    color: "#f97316"
+  Redis:
+    description: "Redis cache for session management"
+    shape: "cylinder"
+    icon: "💾"
+    color: "#dc2626"
+
+edgeComponents:
+  HTTP:
+    description: "HTTP/HTTPS communication"
+    style: "solid"
+    color: "#3b82f6"
+    directed: true
+  API:
+    description: "REST API calls"
+    style: "solid"
+    color: "#10b981"
+    directed: true
+  Query:
+    description: "Database queries"
+    style: "dashed"
+    color: "#8b5cf6"
+    directed: true
+  Auth:
+    description: "Authentication flow"
+    style: "solid"
+    color: "#f97316"
+    directed: true
+  Index:
+    description: "Code indexing operations"
+    style: "dotted"
+    color: "#84cc16"
+    directed: true
+  Webhook:
+    description: "Webhook notifications"
+    style: "dashed"
+    color: "#f59e0b"
+    directed: true
+  Cache:
+    description: "Cache operations"
+    style: "solid"
+    color: "#dc2626"
+    directed: true
